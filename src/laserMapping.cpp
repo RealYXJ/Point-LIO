@@ -33,6 +33,10 @@
 
 const float MOV_THRESHOLD = 1.5f;
 
+int cnt = 0;
+
+int step = 150;
+
 mutex mtx_buffer;
 condition_variable sig_buffer;
 
@@ -1091,8 +1095,11 @@ int main(int argc, char** argv)
                     if (publish_odometry_without_downsample)
                     {
                         /******* Publish odometry *******/
-
-                        publish_odometry(pubOdomAftMapped);
+                        if(cnt%step == 0){
+                            publish_odometry(pubOdomAftMapped);
+                        }
+                        cnt+=1;
+                        // publish_odometry(pubOdomAftMapped);
                         if (runtime_pos_log)
                         {
                             state_out = kf_output.x_;
@@ -1251,8 +1258,10 @@ int main(int argc, char** argv)
                     if (publish_odometry_without_downsample)
                     {
                         /******* Publish odometry *******/
-
-                        publish_odometry(pubOdomAftMapped);
+                        if(cnt%step == 0){
+                            publish_odometry(pubOdomAftMapped);
+                        }
+                        cnt+=1;
                         if (runtime_pos_log)
                         {
                             state_in = kf_input.x_;
