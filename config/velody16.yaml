@@ -49,7 +49,8 @@ mapping:
                    0, 0, 1 ] # ulhk 4 utbm 3
 
 odometry: 
-    publish_odometry_without_downsample: false
+    publish_odometry_without_downsample: true
+    frequency_step: 40            # the roughly targeted frequency was calculated by original frequency divided by the frequcy step.
 
 publish:
     path_en: true                 # false: close the path output
