@@ -5,6 +5,8 @@ double lidar_end_time = 0.0, first_lidar_time = 0.0, time_con = 0.0;
 double last_timestamp_lidar = -1.0, last_timestamp_imu = -1.0;
 int pcd_index = 0;
 
+int frequency_step;
+
 std::string lid_topic, imu_topic;
 bool prop_at_freq_of_imu, check_satu, con_frame, cut_frame;
 bool use_imu_as_input, space_down_sample, publish_odometry_without_downsample;
@@ -79,6 +81,7 @@ void readParameters(ros::NodeHandle &nh)
   nh.param<std::vector<double>>("mapping/extrinsic_T", extrinT, std::vector<double>());
   nh.param<std::vector<double>>("mapping/extrinsic_R", extrinR, std::vector<double>());
   nh.param<bool>("odometry/publish_odometry_without_downsample", publish_odometry_without_downsample, false);
+  nh.param<int>("odometry/frequency_step", frequency_step, 50);
   nh.param<bool>("publish/path_en",path_en, true);
   nh.param<bool>("publish/scan_publish_en",scan_pub_en,1);
   nh.param<bool>("publish/scan_bodyframe_pub_en",scan_body_pub_en,1);

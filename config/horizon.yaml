@@ -44,6 +44,7 @@ mapping:
 
 odometry: 
     publish_odometry_without_downsample: true
+    frequency_step: 40
 
 publish:
     path_en: true                 # false: close the path output

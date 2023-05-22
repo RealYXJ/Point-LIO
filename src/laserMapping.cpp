@@ -35,7 +35,7 @@ const float MOV_THRESHOLD = 1.5f;
 
 int cnt = 0;
 
-int step = 150;
+// int step = 150;
 
 mutex mtx_buffer;
 condition_variable sig_buffer;
@@ -684,6 +684,7 @@ void publish_odometry(const ros::Publisher & pubOdomAftMapped)
 {
     odomAftMapped.header.frame_id = "camera_init";
     odomAftMapped.child_frame_id = "aft_mapped";
+    
     if (publish_odometry_without_downsample)
     {
         odomAftMapped.header.stamp = ros::Time().fromSec(time_current);
@@ -1095,7 +1096,7 @@ int main(int argc, char** argv)
                     if (publish_odometry_without_downsample)
                     {
                         /******* Publish odometry *******/
-                        if(cnt%step == 0){
+                        if(cnt%frequency_step == 0){
                             publish_odometry(pubOdomAftMapped);
                         }
                         cnt+=1;
@@ -1258,7 +1259,7 @@ int main(int argc, char** argv)
                     if (publish_odometry_without_downsample)
                     {
                         /******* Publish odometry *******/
-                        if(cnt%step == 0){
+                        if(cnt%frequency_step == 0){
                             publish_odometry(pubOdomAftMapped);
                         }
                         cnt+=1;
